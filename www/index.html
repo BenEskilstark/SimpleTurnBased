@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Realtime Go</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <script type="module" src="js/index.js"></script>
+    <div id="container" style="width: 100%; margin: auto">
+      <stateful-client>
+        <screen-router initial="LOBBY">
+          <game-lobby screen="LOBBY" display="flex" ></game-lobby>
+
+          <game-board screen="GAME" display="flex">
+            <canvas class="boardCanvas" width=800 height=800
+              onclick="this.closest('game-board').canvasClick(event)"
+              onmousemove="this.closest('game-board').canvasMouseMove(event)"
+              onmousedown="this.closest('game-board').canvasMouseDown(event)"
+              onmouseup="this.closest('game-board').canvasMouseUp(event)"
+            />
+          </game-board>
+        </screen-router>
+      </stateful-client>
+
+    </div>
+  </body>
+</html>

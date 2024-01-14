@@ -1,0 +1,33 @@
+
+  - lobby
+    - add ready state
+    - have a card for each player in the game (and transfer to GoRTS)
+    - support named configs and modifying configs in the lobby
+    - screen-router should get display intelligently
+
+
+  - general refactor
+    - should be dispatching actions instead of calling this.closest('tag');
+    - simplify durations
+
+
+  - utils
+    - SmartMap for json keys instead of encode/decodePos
+
+
+  - make it easy to extract just the components needed for singleplayer
+    - the socket could have all the server code running locally
+    - or just something that is guaranteed to be a static site
+      and not actually turnbased.
+
+
+  - queuing actions
+    - call queue actions from players; delete dispatchOrQueue
+    - action queue per client
+    - refactor how/which reducers handle queued actions (turnReducer)
+
+
+  - fun simple games
+    - coop space invaders/galaga
+    - tron
+    - frogger races
