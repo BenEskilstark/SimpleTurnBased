@@ -1,7 +1,7 @@
 import StatefulHTML from './StatefulHTML.js';
 import {oneOf, randomIn, normalIn, weightedOneOf} from '../utils/stochastic.js';
 import {config} from '../config.js';
-import {encodePos, decodePos} from '../utils/positions.js';
+import {smartGet, smartSet} from '../utils/arraysAndObjects.js';
 
 /**
  * Use like:

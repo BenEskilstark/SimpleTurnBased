@@ -8,26 +8,20 @@
 
   - general refactor
     - should be dispatching actions instead of calling this.closest('tag');
-    - simplify durations
-
-
-  - utils
-    - SmartMap for json keys instead of encode/decodePos
 
 
   - make it easy to extract just the components needed for singleplayer
-    - the socket could have all the server code running locally
     - or just something that is guaranteed to be a static site
       and not actually turnbased.
-
-
-  - queuing actions
-    - call queue actions from players; delete dispatchOrQueue
-    - action queue per client
-    - refactor how/which reducers handle queued actions (turnReducer)
+    - keep in sync with SimpleWWW in templates
+    - scripting
+      - merge reactbased templates into one with arguments
+      - make a "simple" script for static, sim, multiplayer
 
 
   - fun simple games
     - coop space invaders/galaga
     - tron
     - frogger races
+    - pong
+    - multiplayer asteroids

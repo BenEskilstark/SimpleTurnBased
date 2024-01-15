@@ -8,6 +8,8 @@ export const rootReducer = (state, action) => {
 
   switch (action.type) {
     // NOTE: any action that should be queued MUST be handled by this reducer:
+    // (actions that should be queued are any that should affect game state
+    // visible to all players)
     case 'END_TURN':
       return turnReducer(state, action);
     case 'QUEUE_ACTION':

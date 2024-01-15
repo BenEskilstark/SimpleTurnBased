@@ -4,7 +4,6 @@ import {dispatchToServer} from '../sockets.js';
 // class in order for them to get access to
 // this.getState, this.dispatch, etc.
 // Implement onChange(state) which fires whenever the state changes
-// And call this.toServer(action) to dispatch to the server
 
 export default class StatefulHTML extends HTMLElement {
   token = null;
@@ -25,34 +24,41 @@ export default class StatefulHTML extends HTMLElement {
     this.unsubscribe(this.token); // make sure to call this if you override
   }
 
-  onChange(state) {
-    // override this
-  }
 
-  // call these
+  ////////////////////
+  // override this
+  onChange(state) {}
+
+
+  ////////////////////
+  // call these to update game state for all players
   dispatchToServer(action) {
-    dispatchToServer(this.getState().socket, action);
+    const {socket} = this.getState();
+    if (socket.isSinglePlayer) {
+      this.dispatch(action);
+    } else {
+      dispatchToServer(socket, action);
+    }
   }
 
   dispatchToServerAndSelf(action) {
+    const {socket} = this.getState();
     this.dispatch(action);
-    dispatchToServer(this.getState().socket, action);
+    if (!socket.isSinglePlayer) {
+      dispatchToServer(socket, action);
+    }
   }
 
-  // dispatches the action to self and server if it's my turn,
-  // else just queues the action to myself
-  dispatchOrQueue(action) {
-    const {myTurn, realtime} = this.getState();
-    // if (!myTurn && realtime) {
-    if (realtime) {  // always queue
+  // queue the action (to be dispatched at the end of our next turn)
+  // unless we're not realtime, in which case just dispatch to server and self
+  // (or unless we're not actually using the socket)
+  queue(action) {
+    const {myTurn, realtime, socket} = this.getState();
+    if (realtime && !socket.isSinglePlayer) {
       this.dispatch({type: 'QUEUE_ACTION', action});
     } else {
       this.dispatchToServerAndSelf(action);
     }
-  }
-
-  queue(action) {
-    this.dispatch({type: 'QUEUE_ACTION', action});
   }
 
 }

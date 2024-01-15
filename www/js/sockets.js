@@ -2,8 +2,15 @@
 export const setupSocket = (dispatch) => {
   let hostname = window.location.hostname;
   if (hostname == 'localhost') hostname += ':8000';
-  const socket = io(hostname);
-  socket.on("action", dispatch);
+
+  let socket = {emit: () => {}, isSinglePlayer: true};
+  try {
+    socket = io(hostname);
+    socket.on("action", dispatch);
+  } catch (ex) {
+    console.log(ex);
+  }
+
   return socket;
 }
 

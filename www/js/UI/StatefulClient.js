@@ -16,8 +16,10 @@ export default class StatefulClient extends HTMLElement {
 
   connectedCallback() {
     this.provideStore(); // Provide the state methods to child components
+    this.setupSocket(); // Connect to the multiplayer server
+  }
 
-    // setup websocket:
+  setupSocket() {
     const socket = setupSocket(this.dispatch);
     this.dispatch({socket});
 

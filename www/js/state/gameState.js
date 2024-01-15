@@ -1,6 +1,5 @@
 
 import {config} from '../config.js';
-import {arrayToMapKeys} from '../utils/helpers.js';
 import {newDuration} from '../selectors/durationSelectors.js';
 
 export const initGameState = (players, clientID) => {
@@ -31,7 +30,8 @@ export const initGameState = (players, clientID) => {
 
     /////////////
     // global game state that must be shared
-
+    nextEntityID: 0,
+    entities: {}, // {[EntityID] => Object}
 
   };
 }

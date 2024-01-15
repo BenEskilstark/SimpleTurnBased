@@ -1,5 +1,5 @@
 import StatefulHTML from './StatefulHTML.js';
-import {encodePos, decodePos} from '../utils/positions.js';
+import {smartGet, smartSet} from '../utils/arraysAndObjects.js';
 import {config} from '../config.js';
 import {mouseToGrid} from '../selectors/mouseSelectors.js';
 
