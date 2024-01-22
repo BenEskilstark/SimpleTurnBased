@@ -8,8 +8,8 @@ export const initGameState = (players, clientID) => {
     // immutable game state
     players, // Array<ClientID>
 
-    width: config.boardSize,
-    height: config.boardSize,
+    width: config.width,
+    height: config.height,
 
 
     /////////////
